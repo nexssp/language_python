@@ -28,8 +28,35 @@ languageConfig.builders = {
 };
 languageConfig.compilers = {
   python3: {
-    install: "scoop install python3",
-    // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
+    install: "scoop install python",
+    command: "python3",
+    args: "<file>",
+    help: ``
+  },
+  python27: {
+    install: "scoop install python27",
+    command: "python2",
+    args: "<file>",
+    help: ``
+  },
+  blender: {
+    install:
+      "scoop bucket rm extras && scoop bucket add extras && scoop install blender",
+    command: "blender",
+    args: "--python <file>",
+    help: ``,
+    interactive: "--python-console"
+  },
+  gimp: {
+    install:
+      "scoop bucket rm extras && bucket add extras && scoop install gimp",
+    command: "gimp",
+    args: "--python <file>",
+    help: ``,
+    interactive: "--python-console"
+  },
+  python36: {
+    install: "scoop install python36",
     command: "python3",
     args: "<file>",
     help: ``
@@ -37,19 +64,19 @@ languageConfig.compilers = {
 };
 languageConfig.errors = require("./nexss.python.errors");
 languageConfig.languagePackageManagers = {
-  npm: {
-    installation: "scoop install pip3",
+  pip3: {
+    installation: "choco install pip3",
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
-    installed: "pip3 list <args>",
-    search: "pip3 search <args>",
-    install: "pip3 install <args>",
-    uninstall: "pip3 remove <args>",
-    help: "pip3 <args>",
-    version: "pip3 version",
+    installed: "pip3 list",
+    search: "pip3 search",
+    install: "pip3 install",
+    uninstall: "pip3 remove",
+    help: "pip3",
+    version: "pip3 --version",
     init: () => {},
     // if command not found in specification
     // run directly on package manager
-    else: "pip3 <default> <args>"
+    else: "pip3"
   }
 };
 
