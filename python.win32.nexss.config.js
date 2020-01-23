@@ -27,6 +27,12 @@ languageConfig.builders = {
   // }
 };
 languageConfig.compilers = {
+  anaconda: {
+    install: "scoop install anaconda",
+    command: "python",
+    args: "<file>",
+    help: ``
+  },
   python3: {
     install: "scoop install python",
     command: "python3",
@@ -36,6 +42,7 @@ languageConfig.compilers = {
   python27: {
     install: "scoop install python27",
     command: "python2",
+    templates: "templates27",
     args: "<file>",
     help: ``
   },
