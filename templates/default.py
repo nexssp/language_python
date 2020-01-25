@@ -25,4 +25,4 @@ parsedJson["test"] = "test"
 
 NexssStdout = json.dumps(parsedJson, ensure_ascii=False).encode('utf8')
 # STDOUT
-print(NexssStdout)
+print(NexssStdout.decode())
