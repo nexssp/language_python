@@ -21,4 +21,4 @@ parsedJson["PythonOutput"] = "Hello from Python! " + \
 
 NexssStdout = json.dumps(parsedJson, ensure_ascii=False)
 # STDOUT
-print((NexssStdout))
+print(NexssStdout)

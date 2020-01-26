@@ -21,6 +21,8 @@ parsedJson = json.loads(NexssStdin)
 parsedJson["PythonOutput"] = "Hello from Python! " + \
     str(platform.python_version())
 
-NexssStdout = json.dumps(parsedJson, ensure_ascii=False).encode('utf8')
+# parsedJson["test"] = "test"
+
+NexssStdout = json.dumps(parsedJson, ensure_ascii=False).encode('utf8','surrogateescape')
 # STDOUT
-print(NexssStdout.decode())
+print(NexssStdout.decode('utf8','surrogateescape'))
