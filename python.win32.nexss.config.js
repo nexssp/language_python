@@ -6,7 +6,10 @@ let languageConfig = Object.assign({}, require("../config.win32"));
 languageConfig.title = "Python 3";
 languageConfig.description =
   "Python is a programming language that lets you work quickly and integrate systems more effectively.";
-languageConfig.url = "https://www.python.org/";
+languageConfig.url = "https://www.python.org";
+languageConfig.founders = ["Guido van Rossum"];
+languageConfig.developers = [""];
+languageConfig.years = ["1991"];
 languageConfig.extensions = [".py"];
 // languageConfig.compiler = "python3";
 languageConfig.builders = {
