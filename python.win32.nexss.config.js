@@ -43,7 +43,7 @@ languageConfig.compilers = {
     args: "<file>",
     help: ``
   },
-  anaconda3: {
+  anaconda: {
     install: "scoop install anaconda",
     command: "python",
     args: "<file>",
