@@ -34,20 +34,20 @@ languageConfig.compilers = {
     install: "scoop install python",
     command: "python3",
     args: "<file>",
-    help: ``
+    help: ``,
   },
   python27: {
     install: "scoop install python27",
     command: "python2",
     templates: "templates27",
     args: "<file>",
-    help: ``
+    help: ``,
   },
   anaconda: {
     install: "scoop install anaconda",
     command: "python",
     args: "<file>",
-    help: ``
+    help: ``,
   },
   blender: {
     install:
@@ -55,7 +55,7 @@ languageConfig.compilers = {
     command: "blender",
     args: "--python <file>",
     help: ``,
-    interactive: "--python-console"
+    interactive: "--python-console",
   },
   gimp: {
     install:
@@ -63,16 +63,17 @@ languageConfig.compilers = {
     command: "gimp",
     args: "--python <file>",
     help: ``,
-    interactive: "--python-console"
+    interactive: "--python-console",
   },
   python36: {
     install: "scoop install python36",
     command: "python3",
     args: "<file>",
-    help: ``
-  }
+    help: ``,
+  },
 };
 languageConfig.errors = require("./nexss.python.errors");
+languageConfig.replacer = __dirname + "/nexss.python.replacer.js"; // replace strings in errors solutions
 languageConfig.languagePackageManagers = {
   pip3: {
     installation: "choco install pip3",
@@ -88,8 +89,8 @@ languageConfig.languagePackageManagers = {
     init: () => {},
     // if command not found in specification
     // run directly on package manager
-    else: "pip3"
-  }
+    else: "pip3",
+  },
 };
 
 module.exports = languageConfig;
