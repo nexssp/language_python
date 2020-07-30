@@ -31,7 +31,7 @@ languageConfig.builders = {
 };
 languageConfig.compilers = {
   python3: {
-    install: "scoop install python",
+    install: "scoop install python37",
     command: "python3",
     args: "<file>",
     help: ``,
@@ -53,6 +53,7 @@ languageConfig.compilers = {
     install:
       "scoop bucket rm extras && scoop bucket add extras && scoop install blender",
     command: "blender",
+    templates: "templatesBlender",
     args: "--python <file>",
     help: ``,
     interactive: "--python-console",
