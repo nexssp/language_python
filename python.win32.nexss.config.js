@@ -2,7 +2,10 @@
 process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
 
-let languageConfig = Object.assign({}, require("../config.win32"));
+let languageConfig = Object.assign(
+  {},
+  require(`../config.${process.platform}`)
+);
 languageConfig.title = "Python 3";
 languageConfig.description =
   "Python is a programming language that lets you work quickly and integrate systems more effectively.";
