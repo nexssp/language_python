@@ -11,5 +11,7 @@ Or please add to the top of your python file (example without .blend file):
 # nexss-compiler: blender --background
 `,
   "ModuleNotFoundError: No module named '(.*?)'":
-    "nexss py install <module> OR pip3 install <module>"
+    "nexss py install <module> OR pip3 install <module>",
+  "NameError: name 'reload' is not defined":
+    "Probably you have run the template from Python2 instead Python3?\nAdd at the top of the file # nexss-compiler: python27",
 };

@@ -6,13 +6,23 @@ To Install Nexss Programmer please go to [Nexss Programmer CLI](https://github.c
 
 ```sh
 nexss myprogram.py
-nexss myprogram.py --nxsCompiler="blender"
+nexss myprogram.py # > to check --nxsCompiler="blender"
+nexss py default compiler python27
 ```
 
 ## Links
 
-[Command line arguments](https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html)  
-<http://jonathansoma.com/tutorials/international-data/python-and-utf-8/>
+- [Command line arguments](https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html)  
+  <http://jonathansoma.com/tutorials/international-data/python-and-utf-8/>
+- [PEP 8 - Style Guide For Python Code](https://www.python.org/dev/peps/pep-0008/)
+
+## Tips and Tricks
+
+### Smtpd server for debugging
+
+```sh
+python -u -m smtpd -n -c DebuggingServer localhost:8025 > /tmp/smtpd.log
+```
 
 ## Package Manager pip / pip3
 
