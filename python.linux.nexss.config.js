@@ -1,25 +1,29 @@
 // must be here for unicode !!!!
 process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
-let setupPPA =
-  "apt update && apt install software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && ";
+let sudo = "sudo ";
+if (process.getuid && process.getuid() === 0) {
+  sudo = "";
+}
+let setupPPA = `${sudo}apt update && ${sudo}apt install software-properties-common && ${sudo}add-apt-repository ppa:deadsnakes/ppa && ${sudo}apt update && `;
 let languageConfig = Object.assign({}, require("./python.win32.nexss.config")); //We get setup from windows and modify it.
+
 languageConfig.compilers = {
   python3: {
-    install: setupPPA + "apt install python3.8",
+    install: setupPPA + `${sudo}apt install python3.8`,
     command: "python3",
     args: "<file>",
     help: ``,
   },
   python27: {
-    install: setupPPA + "apt install python2.7",
+    install: setupPPA + `${sudo}apt install python2.7`,
     command: "python2",
     templates: "templates27",
     args: "<file>",
     help: ``,
   },
   blender: {
-    install: "apt install blender",
+    install: `${sudo}apt install blender`,
     command: "blender",
     templates: "templatesBlender",
     args: "--python <file>",
@@ -27,6 +31,31 @@ languageConfig.compilers = {
     interactive: "--python-console",
   },
 };
+const {
+  replaceCommandByDist,
+  dist,
+} = require(`${process.env.NEXSS_SRC_PATH}/lib/osys`);
+const distName = dist();
+languageConfig.dist = distName;
+
+// TODO: Later to cleanup this config file !!
+switch (distName) {
+  // case "Arch Linux":
+  //   languageConfig.compilers.python3.install = `${sudo}pacman -Sy --noconfirm python`;
+  //   languageConfig.compilers.blender.install = `${sudo}pacman -Sy --noconfirm blender`;
+  //   break;
+  default:
+    languageConfig.compilers.python3.install = replaceCommandByDist(
+      "apt update && apt install -y python"
+    );
+    languageConfig.compilers.python27.install = replaceCommandByDist(
+      "apt update && apt install -y python2"
+    );
+    languageConfig.compilers.blender.install = replaceCommandByDist(
+      "apt update && apt install -y blender"
+    );
+    break;
+}
 
 languageConfig.languagePackageManagers = {
   pip3: {

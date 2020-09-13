@@ -1,3 +1,4 @@
+# nexss-compiler: blender --background -noaudio -E CYCLES
 # Nexss PROGRAMMER - Blender/Python3
 # Python 3.7
 
@@ -37,11 +38,13 @@ parsedJson = json.loads(NexssStdin)
 
 # Switch to the scripting workspace (Console + Info)
 bpy.context.window.workspace = bpy.data.workspaces["Scripting"]
-bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
+bpy.ops.mesh.primitive_plane_add(
+    size=2, enter_editmode=False, location=(0, 0, 0))
 bpy.ops.object.editmode_toggle()
 
 parsedJson["testxxxx"] = "tes123123123123t"
 
-NexssStdout = json.dumps(parsedJson, ensure_ascii=False).encode('utf8','surrogateescape')
+NexssStdout = json.dumps(parsedJson, ensure_ascii=False).encode(
+    'utf8', 'surrogateescape')
 # STDOUT
-print(NexssStdout.decode('utf8','surrogateescape'))
+print(NexssStdout.decode('utf8', 'surrogateescape'))

@@ -1,3 +1,4 @@
+# nexss-compiler: blender --background -noaudio
 # Nexss PROGRAMMER 2.0.0 - Python3
 # Default template for JSON Data
 
@@ -25,10 +26,11 @@ scene = bpy.context.scene
 pprint(scene.objects)
 
 
-bpy.data.scenes['Scene'].render.filepath = os.path.join(os.getcwd(),'test2.jpg')
+bpy.data.scenes['Scene'].render.filepath = os.path.join(
+    os.getcwd(), 'test2.jpg')
 bpy.context.scene.render.resolution_x = 320
 bpy.context.scene.render.resolution_y = 280
-bpy.context.scene.render.image_settings.file_format='JPEG'
+bpy.context.scene.render.image_settings.file_format = 'JPEG'
 bpy.ops.render.render(write_still=True)
 # bpy.ops.render.render(use_viewport = True, write_still=True)
 
