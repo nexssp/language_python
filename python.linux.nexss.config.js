@@ -40,10 +40,11 @@ languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 switch (distName) {
-  // case "Arch Linux":
-  //   languageConfig.compilers.python3.install = `${sudo}pacman -Sy --noconfirm python`;
-  //   languageConfig.compilers.blender.install = `${sudo}pacman -Sy --noconfirm blender`;
-  //   break;
+  case "Alpine Linux":
+    languageConfig.compilers.python3.install = replaceCommandByDist(
+      "apt update && apt install -y python3"
+    );
+    break;
   default:
     languageConfig.compilers.python3.install = replaceCommandByDist(
       "apt update && apt install -y python"
