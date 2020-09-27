@@ -40,10 +40,16 @@ languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 switch (distName) {
-  case "Alpine Linux":
+  case "Amazon Linux":
     languageConfig.compilers.python3.install = replaceCommandByDist(
       "apt update && apt install -y python3"
     );
+    break;
+  case "Alpine Linux":
+    languageConfig.compilers.python3.install = replaceCommandByDist(
+      "apt update && apt install -y python3 py3-pip && ln -sf /usr/bin/python3.* /usr/bin/python && ln -sf /usr/bin/python3.* /usr/bin/python3"
+    );
+
     break;
   default:
     languageConfig.compilers.python3.install = replaceCommandByDist(
