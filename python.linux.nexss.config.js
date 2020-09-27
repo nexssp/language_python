@@ -39,15 +39,21 @@ const distName = dist();
 languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
+
 switch (distName) {
+  case "Oracle Linux Server":
+    languageConfig.compilers.python3.install = replaceCommandByDist(
+      "apt update -y && apt install -y oracle-epel-release-el7 python3"
+    );
+    break;
   case "Amazon Linux":
     languageConfig.compilers.python3.install = replaceCommandByDist(
-      "apt update && apt install -y python3"
+      "apt update -y && apt install -y python3"
     );
     break;
   case "Alpine Linux":
     languageConfig.compilers.python3.install = replaceCommandByDist(
-      "apt update && apt install -y python3 py3-pip && ln -sf /usr/bin/python3.* /usr/bin/python && ln -sf /usr/bin/python3.* /usr/bin/python3"
+      "apt update -y && apt install -y python3 py3-pip && ln -sf /usr/bin/python3.* /usr/bin/python && ln -sf /usr/bin/python3.* /usr/bin/python3"
     );
 
     break;
