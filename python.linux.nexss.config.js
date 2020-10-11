@@ -54,9 +54,6 @@ switch (distName) {
     languageConfig.compilers.python3.install = replaceCommandByDist(
       "apt update && apt install -y python"
     );
-    languageConfig.compilers.python27.install = replaceCommandByDist(
-      "apt update && apt install -y python2"
-    );
     languageConfig.compilers.blender.install = replaceCommandByDist(
       "apt update && apt install -y blender"
     );
