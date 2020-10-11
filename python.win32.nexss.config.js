@@ -14,7 +14,6 @@ languageConfig.founders = ["Guido van Rossum"];
 languageConfig.developers = [""];
 languageConfig.years = ["1991"];
 languageConfig.extensions = [".py"];
-// languageConfig.compiler = "python3";
 languageConfig.builders = {
   // pyinstaller: {
   //   install: "pip3 install auto-py-to-exe",
@@ -34,15 +33,8 @@ languageConfig.builders = {
 };
 languageConfig.compilers = {
   python3: {
-    install: "scoop install python37",
-    command: "python3",
-    args: "<file>",
-    help: ``,
-  },
-  python27: {
-    install: "scoop install python27",
-    command: "python2",
-    templates: "templates27",
+    install: "scoop install python",
+    command: "python",
     args: "<file>",
     help: ``,
   },
@@ -80,7 +72,7 @@ languageConfig.errors = require("./nexss.python.errors");
 languageConfig.replacer = __dirname + "/nexss.python.replacer.js"; // replace strings in errors solutions
 languageConfig.languagePackageManagers = {
   pip3: {
-    installation: "choco install pip3",
+    installation: "installed", // Installed?
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
     req: "python3 -m pip install -r requirements.txt",
     freeze: "python3 -m pip freeze > requirements.txt",

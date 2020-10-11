@@ -15,13 +15,6 @@ languageConfig.compilers = {
     args: "<file>",
     help: ``,
   },
-  python27: {
-    install: setupPPA + `${sudo}apt install python2.7`,
-    command: "python2",
-    templates: "templates27",
-    args: "<file>",
-    help: ``,
-  },
   blender: {
     install: `${sudo}apt install blender`,
     command: "blender",
