@@ -10,6 +10,8 @@ except Exception as e:  # print default error / not specified
     import sys
     # print("Error {0}".format(sys.exc_info()[0]))
     print(e)  # print error
+
+    # traceback.print_exc()
 else:
     try:
         with open('notexists.log') as file:
