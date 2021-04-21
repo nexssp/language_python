@@ -2,11 +2,18 @@
 process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
 
+const {
+  ensureBucketAdded,
+} = require(`${process.env.NEXSS_SRC_PATH}/lib/scoop`);
+// We make sure versions bucket is added (this will be not checked after config is cached.)
+ensureBucketAdded("versions");
+
 let languageConfig = Object.assign(
   {},
   require(`../config.${process.platform}`)
 );
-languageConfig.title = "Python 3";
+
+languageConfig.title = "Python";
 languageConfig.description =
   "Python is a programming language that lets you work quickly and integrate systems more effectively.";
 languageConfig.url = "https://www.python.org";
@@ -32,17 +39,42 @@ languageConfig.builders = {
   // }
 };
 languageConfig.compilers = {
+  // Default python 3.8
+  python: {
+    install: "scoop install python38",
+    command: "python38",
+    args: "<file>",
+  },
+  python37: {
+    install: "scoop install python37",
+    command: "python37",
+    args: "<file>",
+  },
+  python39: {
+    install: "scoop install python39",
+    command: "python39",
+    args: "<file>",
+  },
+  python27: {
+    install: "scoop install python27",
+    command: "python27",
+    args: "<file>",
+  },
+  python2: {
+    install: "scoop install python27",
+    command: "python2",
+    args: "<file>",
+    templates: "templates27",
+  },
   python3: {
     install: "scoop install python",
     command: "python",
     args: "<file>",
-    help: ``,
   },
   anaconda: {
     install: "scoop install anaconda",
     command: "python",
     args: "<file>",
-    help: ``,
   },
   blender: {
     install:
