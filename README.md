@@ -15,6 +15,7 @@ nexss py default compiler python27
 - [Command line arguments](https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html)  
   <http://jonathansoma.com/tutorials/international-data/python-and-utf-8/>
 - [PEP 8 - Style Guide For Python Code](https://www.python.org/dev/peps/pep-0008/)
+- [PythonAwesome.com](https://pythonawesome.com/)
 
 ## Tips and Tricks
 
