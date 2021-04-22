@@ -38,6 +38,7 @@ languageConfig.builders = {
   //   help: ``
   // }
 };
+
 languageConfig.compilers = {
   // Default python 3.8
   python: {
@@ -95,25 +96,36 @@ languageConfig.compilers = {
   },
   python36: {
     install: "scoop install python36",
-    command: "python3",
+    command: "python36",
     args: "<file>",
     help: ``,
   },
 };
 languageConfig.errors = require("./nexss.python.errors");
 languageConfig.replacer = __dirname + "/nexss.python.replacer.js"; // replace strings in errors solutions
+
+// for installing we use pip which is associated with the global config or first one from the list.
+let pmCommand =
+  languageConfig.compilers[Object.keys(languageConfig.compilers)[0]].command;
+try {
+  pmCommand =
+    process.nexssGlobalConfig.languages[
+      languageConfig.extensions[0].replace(".", "")
+    ].compilers;
+} catch (error) {}
+
 languageConfig.languagePackageManagers = {
   pip3: {
     installation: "installed", // Installed?
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
-    req: "python3 -m pip install -r requirements.txt",
-    freeze: "python3 -m pip freeze > requirements.txt",
-    installed: "python3 -m pip list",
-    search: "python3 -m pip search",
-    install: "python3 -m pip install",
-    uninstall: "python3 -m pip remove",
-    help: "python3 -m pip",
-    version: "python3 -m pip --version",
+    req: `${pmCommand} -m pip install -r requirements.txt`,
+    freeze: `${pmCommand} -m pip freeze > requirements.txt`,
+    installed: `${pmCommand} -m pip list`,
+    search: `${pmCommand}python3 -m pip search`,
+    install: `${pmCommand} -m pip install`,
+    uninstall: `${pmCommand} -m pip remove`,
+    help: `${pmCommand} -m pip`,
+    version: `${pmCommand} -m pip --version`,
     init: () => {},
     // if command not found in specification
     // run directly on package manager
