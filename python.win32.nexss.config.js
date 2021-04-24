@@ -2,11 +2,13 @@
 process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
 
-const {
-  ensureBucketAdded,
-} = require(`${process.env.NEXSS_SRC_PATH}/lib/scoop`);
-// We make sure versions bucket is added (this will be not checked after config is cached.)
-ensureBucketAdded("versions");
+if (process.platform === "win32") {
+  const {
+    ensureBucketAdded,
+  } = require(`${process.env.NEXSS_SRC_PATH}/lib/scoop`);
+  // We make sure versions bucket is added (this will be not checked after config is cached.)
+  ensureBucketAdded("versions");
+}
 
 let languageConfig = Object.assign(
   {},
@@ -107,12 +109,15 @@ languageConfig.replacer = __dirname + "/nexss.python.replacer.js"; // replace st
 // for installing we use pip which is associated with the global config or first one from the list.
 let pmCommand =
   languageConfig.compilers[Object.keys(languageConfig.compilers)[0]].command;
-try {
-  pmCommand =
-    process.nexssGlobalConfig.languages[
-      languageConfig.extensions[0].replace(".", "")
-    ].compilers;
-} catch (error) {}
+
+if (process.platform === "win32") {
+  try {
+    pmCommand =
+      process.nexssGlobalConfig.languages[
+        languageConfig.extensions[0].replace(".", "")
+      ].compilers;
+  } catch (error) {}
+}
 
 languageConfig.languagePackageManagers = {
   pip3: {
