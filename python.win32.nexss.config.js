@@ -47,11 +47,13 @@ languageConfig.compilers = {
     install: "scoop install python38",
     command: "python38",
     args: "<file>",
+    run: `python38 -c`,
   },
   python37: {
     install: "scoop install python37",
     command: "python37",
     args: "<file>",
+    run: "<currentCommand> -c",
   },
   python39: {
     install: "scoop install python39",
@@ -107,30 +109,33 @@ languageConfig.errors = require("./nexss.python.errors");
 languageConfig.replacer = __dirname + "/nexss.python.replacer.js"; // replace strings in errors solutions
 
 // for installing we use pip which is associated with the global config or first one from the list.
-let pmCommand =
-  languageConfig.compilers[Object.keys(languageConfig.compilers)[0]].command;
+// let pmCommand =
+//   languageConfig.compilers[Object.keys(languageConfig.compilers)[0]].command;
 
-if (process.platform === "win32") {
-  try {
-    pmCommand =
-      process.nexssGlobalConfig.languages[
-        languageConfig.extensions[0].replace(".", "")
-      ].compilers;
-  } catch (error) {}
-}
+// if (process.platform === "win32") {
+//   try {
+//     pmCommand =
+//       process.nexssGlobalConfig.languages[
+//         languageConfig.extensions[0].replace(".", "")
+//       ].compilers;
+//   } catch (error) {}
+// }
+
+// <currentCommand> will be replaced by current compiler execute function eg. languageConfig.compilers.python.command
+languageConfig.run = `<currentCommand> -c`;
 
 languageConfig.languagePackageManagers = {
   pip3: {
     installation: "installed", // Installed?
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
-    req: `${pmCommand} -m pip install -r requirements.txt`,
-    freeze: `${pmCommand} -m pip freeze > requirements.txt`,
-    installed: `${pmCommand} -m pip list`,
-    search: `${pmCommand}python3 -m pip search`,
-    install: `${pmCommand} -m pip install`,
-    uninstall: `${pmCommand} -m pip remove`,
-    help: `${pmCommand} -m pip`,
-    version: `${pmCommand} -m pip --version`,
+    req: `<currentCommand> -m pip install -r requirements.txt`,
+    freeze: `<currentCommand> -m pip freeze > requirements.txt`,
+    installed: `<currentCommand> -m pip list`,
+    search: `<currentCommand> -m pip search`,
+    install: `<currentCommand> -m pip install`,
+    uninstall: `<currentCommand> -m pip remove`,
+    help: `<currentCommand> -m pip`,
+    version: `<currentCommand> -m pip --version`,
     init: () => {},
     // if command not found in specification
     // run directly on package manager
