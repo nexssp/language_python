@@ -1,10 +1,8 @@
 // must be here for unicode !!!!
 process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
-let sudo = "sudo ";
-if (process.getuid && process.getuid() === 0) {
-  sudo = "";
-}
+let sudo = process.sudo;
+
 let setupPPA = `${sudo}apt update && ${sudo}apt install software-properties-common && ${sudo}add-apt-repository ppa:deadsnakes/ppa && ${sudo}apt update && `;
 let languageConfig = Object.assign({}, require("./python.win32.nexss.config")); //We get setup from windows and modify it.
 
@@ -24,37 +22,34 @@ languageConfig.compilers = {
     interactive: "--python-console",
   },
 };
-const {
-  replaceCommandByDist,
-  dist,
-} = require(`${process.env.NEXSS_SRC_PATH}/lib/osys`);
-const distName = dist();
+
+const distName = process.distro;
 languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 
 switch (distName) {
-  case "Oracle Linux Server":
-    languageConfig.compilers.python3.install = replaceCommandByDist(
+  case process.distros.ORACLE:
+    languageConfig.compilers.python3.install = process.replacePMByDistro(
       "apt update -y && apt install -y oracle-epel-release-el7 python3"
     );
     break;
-  case "Amazon Linux":
-    languageConfig.compilers.python3.install = replaceCommandByDist(
+  case process.distros.AMAZON:
+    languageConfig.compilers.python3.install = process.replacePMByDistro(
       "apt update -y && apt install -y python3"
     );
     break;
-  case "Alpine Linux":
-    languageConfig.compilers.python3.install = replaceCommandByDist(
+  case process.distros.ALPINE:
+    languageConfig.compilers.python3.install = process.replacePMByDistro(
       "apt update -y && apt install -y python3 py3-pip && ln -sf /usr/bin/python3.* /usr/bin/python && ln -sf /usr/bin/python3.* /usr/bin/python3"
     );
 
     break;
   default:
-    languageConfig.compilers.python3.install = replaceCommandByDist(
-      "apt update && apt install -y python"
+    languageConfig.compilers.python3.install = process.replacePMByDistro(
+      "apt update && apt install -y python python3-pip"
     );
-    languageConfig.compilers.blender.install = replaceCommandByDist(
+    languageConfig.compilers.blender.install = process.replacePMByDistro(
       "apt update && apt install -y blender"
     );
     break;
