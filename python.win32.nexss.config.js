@@ -3,9 +3,7 @@ process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
 
 if (process.platform === "win32") {
-  const {
-    ensureBucketAdded,
-  } = require(`${process.env.NEXSS_SRC_PATH}/lib/scoop`);
+  const { ensureBucketAdded } = require(`./lib/scoop`);
   // We make sure versions bucket is added (this will be not checked after config is cached.)
   ensureBucketAdded("versions");
 }
