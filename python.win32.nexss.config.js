@@ -124,10 +124,11 @@ languageConfig.run = `<currentCommand> -c`;
 
 languageConfig.languagePackageManagers = {
   pip3: {
-    installation: "installed", // Installed?
+    installation: "<currentCommand> -m pip install pipreqs", // we install pipreqs
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
     req: `<currentCommand> -m pip install -r requirements.txt`,
     freeze: `<currentCommand> -m pip freeze > requirements.txt`,
+    pipreqs: `pipreqs`,
     installed: `<currentCommand> -m pip list`,
     search: `<currentCommand> -m pip search`,
     install: `<currentCommand> -m pip install`,
