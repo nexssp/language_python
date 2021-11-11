@@ -42,29 +42,37 @@ languageConfig.builders = {
 languageConfig.compilers = {
   // Default python 3.8
   python: {
-    install: "scoop install python38",
-    command: "python38",
+    install: "scoop install python",
+    command: "python",
     args: "<file>",
-    run: `python38 -c`,
+    run: `python -c`,
   },
   python37: {
-    install: "scoop install python37",
+    install: "scoop bucket add versions && scoop install python37",
     command: "python37",
     args: "<file>",
     run: "<currentCommand> -c",
   },
+  python38: {
+    install: "scoop bucket add versions && scoop install python38",
+    command: "python38",
+    args: "<file>",
+    run: `python38 -c`,
+  },
   python39: {
-    install: "scoop install python39",
+    install: "scoop bucket add versions && scoop install python39",
     command: "python39",
     args: "<file>",
+    run: "<currentCommand> -c",
   },
   python27: {
-    install: "scoop install python27",
+    install: "scoop bucket add versions && scoop install python27",
     command: "python27",
     args: "<file>",
+    run: "<currentCommand> -c",
   },
   python2: {
-    install: "scoop install python27",
+    install: "scoop bucket add versions && scoop install python27",
     command: "python2",
     args: "<file>",
     templates: "templates27",
@@ -75,13 +83,12 @@ languageConfig.compilers = {
     args: "<file>",
   },
   anaconda: {
-    install: "scoop install anaconda",
+    install: "scoop bucket add versions && scoop install anaconda",
     command: "python",
     args: "<file>",
   },
   blender: {
-    install:
-      "scoop bucket rm extras && scoop bucket add extras && scoop install blender",
+    install: "scoop bucket add extras && scoop install blender",
     command: "blender",
     templates: "templatesBlender",
     args: "--python <file>",
@@ -89,15 +96,14 @@ languageConfig.compilers = {
     interactive: "--python-console",
   },
   gimp: {
-    install:
-      "scoop bucket rm extras && bucket add extras && scoop install gimp",
+    install: "scoop bucket add extras && scoop install bucket/gimp",
     command: "gimp",
     args: "--python <file>",
     help: ``,
     interactive: "--python-console",
   },
   python36: {
-    install: "scoop install python36",
+    install: "scoop bucket add versions && scoop install python36",
     command: "python36",
     args: "<file>",
     help: ``,
