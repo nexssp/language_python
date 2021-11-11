@@ -1,6 +1,14 @@
-# Python 3
+# Python
 
 To Install Nexss Programmer please go to [Nexss Programmer CLI](https://github.com/nexssp/cli#readme) for more information.
+
+## Windows and Shop installation (?)
+
+You may want to run this command if you see python Windows shop installation. It's removing unwanted python.exe and python3.exe.
+
+```ps1
+Remove-Item $env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\python*.exe
+```
 
 ## Example
 
