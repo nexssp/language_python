@@ -10,6 +10,8 @@ Or please add to the top of your python file (example without .blend file):
 
 # nexss-compiler: blender --background
 `,
+  "ImportError: No module named '(.*?)'":
+    "nexss py install <module> OR pip3 install <module>",
   "ModuleNotFoundError: No module named '(.*?)'":
     "nexss py install <module> OR pip3 install <module>",
   "NameError: name 'reload' is not defined":
