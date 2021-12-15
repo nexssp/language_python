@@ -137,6 +137,8 @@ languageConfig.languagePackageManagers = {
     pipreqs: `pipreqs`,
     installed: `<currentCommand> -m pip list`,
     search: `<currentCommand> -m pip search`,
+    upgrade: `<currentCommand> -m pip install --upgrade`,
+    update: `<currentCommand> -m pip install --upgrade`,
     install: `<currentCommand> -m pip install`,
     uninstall: `<currentCommand> -m pip remove`,
     help: `<currentCommand> -m pip`,
