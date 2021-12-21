@@ -18,4 +18,6 @@ Or please add to the top of your python file (example without .blend file):
     "Probably you have run the template from Python2 instead Python3?\nAdd at the top of the file # nexss-compiler: python27",
   "No module named 'NexssInstall'":
     "Please update the Nexss Package to the latest version by: nexss pkg update Nexss",
+  "requires-python:>=(?<pythonversion>.*?)\\)":
+    "Module requires python at least <pythonversion>.\nTry to use `nexss py default compiler 'compilername'`",
 };
