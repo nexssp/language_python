@@ -40,7 +40,6 @@ languageConfig.builders = {
 };
 
 languageConfig.compilers = {
-  // Default python 3.8
   python: {
     install: "scoop install python",
     command: "python",
@@ -141,7 +140,7 @@ languageConfig.languagePackageManagers = {
     ["upgrade-pip"]: `<currentCommand> -m pip install --upgrade pip`,
     update: `<currentCommand> -m pip install --upgrade`,
     install: `<currentCommand> -m pip install`,
-    uninstall: `<currentCommand> -m pip remove`,
+    uninstall: `<currentCommand> -m pip uninstall`,
     help: `<currentCommand> -m pip`,
     version: `<currentCommand> -m pip --version`,
     init: () => {},
