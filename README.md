@@ -42,3 +42,7 @@ pip3 freeze > requirements.txt (freezes packages used)
 nexss py req the same as below
 python3 -m pip install -r requirements.txt
 ```
+
+## Python Interesting Links
+
+- Python Automatic GUI Generator: <http://page.sourceforge.net/>
