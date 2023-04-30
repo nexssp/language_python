@@ -10,6 +10,20 @@ You may want to run this command if you see python Windows shop installation. It
 Remove-Item $env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\python*.exe
 ```
 
+## Issues with buffered print
+
+If your program does not output anything you may want to use flush argument
+
+```py
+print("test", i , item, flush=True)
+```
+
+or use `PYTHONUNBUFFERED` environment variable
+
+```ps1
+$env:PYTHONUNBUFFERED = 'True'
+```
+
 ## Example
 
 ```sh
