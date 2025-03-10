@@ -4,6 +4,13 @@ process.env.PYTHONIOENCODING = "UTF-8";
 
 let languageConfig = Object.assign({}, require("./python.win32.nexss.config")); //We get setup from windows and modify it.
 languageConfig.compilers = {
+  uv: {
+    install: "curl -LsSf https://astral.sh/uv/install.sh | sh",
+    command: "uv",
+    args: "run <file>",
+    run: `uv run python -c`,
+    help: ``,
+  },
   python3: {
     install: "brew install python",
     command: "python3",

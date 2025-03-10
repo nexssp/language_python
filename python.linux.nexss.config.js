@@ -3,12 +3,27 @@ process.env.PYTHONIOENCODING = "UTF-8";
 // process.env.PYTHONOPTIMIZE = 1;
 let sudo = process.sudo;
 
-let setupPPA = `${sudo}apt update && ${sudo}apt install software-properties-common && ${sudo}add-apt-repository ppa:deadsnakes/ppa && ${sudo}apt update && `;
+// To implement pyenv?
+let setupPyenv = `${sudo}apt-get update -y && ${sudo}apt-get install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git \
+&& ${sudo}curl https://pyenv.run | ${sudo}bash && pyenv install 3.8 && python -m ensurepip`;
+
+let setupPPA = `${sudo}apt-get update -y && ${sudo}apt-get -y install software-properties-common apt-utils \
+&& ${sudo}add-apt-repository ppa:deadsnakes/ppa && ${sudo}apt-get update && `;
+
 let languageConfig = Object.assign({}, require("./python.win32.nexss.config")); //We get setup from windows and modify it.
 
 languageConfig.compilers = {
+  uv: {
+    install: "curl -LsSf https://astral.sh/uv/install.sh | sh",
+    command: "uv",
+    args: "run <file>",
+    run: `uv run python -c`,
+    help: ``,
+  },
   python3: {
-    install: setupPPA + `${sudo}apt install python3.8`,
+    install: setupPPA + `${sudo}apt-get install -y python3.8`,
     command: "python3",
     args: "<file>",
     help: ``,
@@ -44,6 +59,8 @@ switch (distName) {
       "apt update -y && apt install -y python3 py3-pip && ln -sf /usr/bin/python3.* /usr/bin/python && ln -sf /usr/bin/python3.* /usr/bin/python3"
     );
 
+    break;
+  case process.distros.UBUNTU:
     break;
   default:
     languageConfig.compilers.python3.install = process.replacePMByDistro(

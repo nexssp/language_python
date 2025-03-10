@@ -40,6 +40,12 @@ languageConfig.builders = {
 };
 
 languageConfig.compilers = {
+  uv: {
+    install: "scoop install uv",
+    command: "uv",
+    args: "run <file>",
+    run: `uv run python -c`,
+  },
   python: {
     install: "scoop install python",
     command: "python",
