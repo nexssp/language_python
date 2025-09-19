@@ -43,7 +43,7 @@ languageConfig.compilers = {
   uv: {
     install: "scoop install uv",
     command: "uv",
-    args: "run <file>",
+    args: `--directory <fileDirectory> run <file>`,
     run: `uv run python -c`,
   },
   python: {
